@@ -1,0 +1,15 @@
+English:
+During this refactoring process, I focused the design on separation of concerns and dependency injection. The application logic is divided into several core components such as EmbeddingService, DocumentStore, Retriever, AnswerGeneration, and RagWorkflow, so that each class has a single, well-defined responsibility. The API layer is responsible only for handling HTTP requests and responses, while the RAG business logic and data storage are placed in separate layers. This approach makes the codebase easier to understand, test, and extend in the future.
+
+One trade-off I considered was introducing more files and abstractions compared to the previous single-file implementation. While this structure may appear more complex for a small application, I chose it because it better reflects real-world production practices. Abstractions such as DocumentStore allow the storage backend (Qdrant or in-memory) to be swapped without changing the retrieval logic or API layer, at the cost of some additional boilerplate.
+
+This refactoring improves maintainability by removing global state, clarifying dependency flow, and enabling each component to be tested in isolation. In addition, the introduction of AppState allows endpoints such as /status to expose system-level information without leaking internal implementation details. Overall, the new structure is more modular, easier to extend, and better prepared for future development.
+
+
+
+Indonesia:
+Pada proses refactoring ini, saya memfokuskan desain pada separation of concerns dan dependency injection. Logika aplikasi dipisahkan ke dalam beberapa komponen utama seperti EmbeddingService, DocumentStore, Retriever, AnswerGeneration, dan RagWorkflow, sehingga setiap kelas memiliki satu tanggung jawab yang jelas. Layer API hanya bertugas menangani HTTP request/response, sementara logika bisnis RAG dan penyimpanan data berada di layer terpisah. Pendekatan ini membuat kode lebih mudah dipahami, diuji, dan dikembangkan di masa depan.
+
+Salah satu trade-off yang saya pertimbangkan adalah menambah jumlah file dan abstraksi dibandingkan implementasi satu file sebelumnya. Walaupun struktur ini terlihat lebih kompleks untuk aplikasi kecil, saya memilih pendekatan ini karena lebih mencerminkan praktik nyata di lingkungan produksi. Abstraksi seperti DocumentStore memungkinkan pergantian backend (Qdrant atau in-memory) tanpa mengubah logika retrieval atau API, dengan konsekuensi sedikit boilerplate tambahan.
+
+Refactoring ini meningkatkan maintainability dengan menghilangkan global state, memperjelas alur dependensi, dan membuat setiap komponen dapat diuji secara terpisah. Selain itu, penambahan AppState memungkinkan endpoint seperti /status memberikan informasi sistem tanpa membocorkan detail implementasi internal. Secara keseluruhan, struktur baru lebih modular, mudah di-extend, dan siap untuk pengembangan lebih lanjut.
